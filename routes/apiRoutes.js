@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require ('uuid')
+const { v4: uuidv4 } = require('uuid')
 
 const db = require('../db/db.json')
 const router = require('express').Router();
@@ -20,10 +20,11 @@ router.post('/notes', (req, res) => {
     res.json(savedNote);
 });
 
-router.delete('/notes/:id', (req,res) => {
+router.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
-   
-    updatedNote= newNote.filter(notes => notes.id != id);
+
+
+    savedNote = savedNote.filter(notes => notes.id != id);
 
     fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(savedNote))
     res.json(savedNote);
