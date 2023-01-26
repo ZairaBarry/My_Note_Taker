@@ -21,13 +21,13 @@ router.post('/notes', (req, res) => {
 });
 
 router.delete('/notes/:id', (req, res) => {
-    const id = req.params.id;
+    const idParams = req.params.id;
+  
+    const deletedId = db.filter( notes => notes.id != idParams);
 
-
-    savedNote = savedNote.filter(notes => notes.id != id);
-
-    fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(savedNote))
-    res.json(savedNote);
+    fs.writeFileSync(path.join(__dirname, "../db/db.json"), JSON.stringify(deletedId))
+    res.json(deletedId);
+   
 })
 
 
